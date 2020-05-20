@@ -23,7 +23,7 @@ ROS3D.MeshResource = function(options) {
   var resource = options.resource;
   var material = options.material || null;
   this.warnings = options.warnings;
-
+  var STLLoader = require('three-stl-loader')(THREE)
 
   // check for a trailing '/'
   if (path.substr(path.length - 1) !== '/') {
@@ -64,7 +64,7 @@ ROS3D.MeshResource = function(options) {
         console.error(error);
       });
   } else if (fileType === '.stl') {
-    loader = new THREE.STLLoader();
+    loader = new STLLoader();
     {
       loader.load(uri,
                   function ( geometry ) {
